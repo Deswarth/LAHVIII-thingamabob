@@ -51,10 +51,10 @@ function initGuessing() {
 
 function guessWord() {
   // Allows the user to guess one letter (this may not work for everyone)
-  let guess = readLine ("Input a letter: ");
+  let guess = prompt ("Input a letter: ");
     while (guess.length > 1) {
         console.log("Invalid input.");
-        guess = readLine ("Input a letter: ");
+        guess = prompt ("Input a letter: ");
     }
     checkGuess(guess);
   
