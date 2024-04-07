@@ -1,4 +1,4 @@
-let words = ["DOVE", "KAREL", "ANOMALY", "DESTRUCTOR", "ILLOGICAL", "HANG MAN"];
+let words = ["DOVE", "KAREL", "ANOMALY", "DESTRUCTOR", "ILLOGICAL", "HANG MAN", "STACK", "OPERATOR", "OVERVIEW", "FAILURE", "DIVISION", "LOS ALTOS", "MAJOR LEAGUE HACKING"];
 let correct = [];
 let attempt = [];
 let tries = 6;
@@ -29,7 +29,7 @@ function main() {
 }
 
 function printIntro() {
-  // Prints the intro text.
+  // Prints the intro text
   console.log("-------HANGMAN-------");
   console.log("Made By Deswarth");
   console.log(" ");
@@ -37,7 +37,8 @@ function printIntro() {
 }
 
 function initGuessing() {
-  word = words[Randomizer.nextInt(0, 5)];
+  // Initializes the arrays necessary
+  word = words[Math.round(Math.random()*12)];
   correct = word.split("");
   for (let i = 0; i < word.length; i++) {
     if (correct[i] == " ") {
@@ -49,6 +50,7 @@ function initGuessing() {
 }
 
 function guessWord() {
+  // Allows the user to guess one letter (this may not work for everyone)
   let guess = readLine ("Input a letter: ");
     while (guess.length > 1) {
         console.log("Invalid input.");
@@ -59,6 +61,7 @@ function guessWord() {
 }
 
 function checkGuess(guess) {
+  // Checks to see if the inputted guess was correct
   isCorrect = false;
   for (let i = 0; i < correct.length; i++) {
     if (guess.toUpperCase() == correct[i]) {
@@ -75,6 +78,7 @@ function checkGuess(guess) {
 }
 
 function checkWord() {
+    // Determines if the guessed letters match the final word
     if (attempt.join() == correct.join()) {
         isAllCorrect = true;
     }
