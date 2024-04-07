@@ -1,26 +1,31 @@
-let words = ["DOVE", "KAREL", "ANOMALY", "DESTRUCTOR", "ILLOGICAL"];
+let words = ["DOVE", "KAREL", "ANOMALY", "DESTRUCTOR", "ILLOGICAL", "HANG MAN"];
 let correct = [];
 let attempt = [];
 let tries = 6;
-let word;
-let isCorrect;
-let shouldBreak = false;;
+let word = null;
+let isCorrect = false;
+let isAllCorrect = false;
 
 function main() {
   printIntro();
   initGuessing();
-  console.log(word);
-  //console.log(attempt);
+  console.log();
   while (tries != 0) {
     console.log("Tries Left: " + tries);
     guessWord();
     checkWord();
-    if (shouldBreak) {
+    if (isAllCorrect) {
         break;
     }
+    console.log(attempt.join(" "));
+    console.log();
+  }
+  if (isAllCorrect) {
+      console.log("You win!");
+  } else {
+      console.log("You lost!");
   }
   console.log("The word was: " + word);
-  //console.log(attempt);
 }
 
 function printIntro() {
@@ -32,15 +37,18 @@ function printIntro() {
 }
 
 function initGuessing() {
-  word = words[Randomizer.nextInt(0, 4)];
+  word = words[Randomizer.nextInt(0, 5)];
   correct = word.split("");
   for (let i = 0; i < word.length; i++) {
-    attempt.push("_");
+    if (correct[i] == " ") {
+      attempt.push(" ");
+    } else {
+      attempt.push("_");
+    }
   }
 }
 
 function guessWord() {
-  // Guesses
   let guess = readLine ("Input a letter: ");
     while (guess.length > 1) {
         console.log("Invalid input.");
@@ -51,7 +59,6 @@ function guessWord() {
 }
 
 function checkGuess(guess) {
-  // aa
   isCorrect = false;
   for (let i = 0; i < correct.length; i++) {
     if (guess.toUpperCase() == correct[i]) {
@@ -69,8 +76,7 @@ function checkGuess(guess) {
 
 function checkWord() {
     if (attempt.join() == correct.join()) {
-        console.log("You win!");
-        shouldBreak = true;
+        isAllCorrect = true;
     }
 }
 
